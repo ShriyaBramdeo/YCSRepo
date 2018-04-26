@@ -145,41 +145,53 @@ namespace YCS.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-         // ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
-          ViewBag.Name = new SelectListItem(context.Roles,"Name","Name");
+            ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
+            // ViewBag.Name = new SelectList(context.Roles.ToList(), "Id", "Name");
+
             return View();
         }
 
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+           
+            ViewBag.Name = new SelectList(context.Roles.ToList(), "Id", "Name");
             if (ModelState.IsValid)
             {
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Name=model.Name,
+                    Surname=model.Surname,
+                    Gender=model.Gender,
+                    ContactNumber = model.ContactNumber,
+                    Address = model.Address,
+                    UserRoles = model.UserRoles
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                
                 if (result.Succeeded)
                 {
-                    //Assign Role to user Here   
-                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
-                    //Ends Here  
+                     
+                    //Assign Role to user Here
+                   
+                    //Ends Here
 
-                    //TempCode- Create Admin Role
-                    //var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
-                    //var roleManager = new RoleManager<IdentityRole>(roleStore);
-                    //await roleManager.CreateAsync(new IdentityRole("Admin"));
-                    //await UserManager.AddToRoleAsync(user.Id, "Admin");
-
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                  //  await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                   
+                    await UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+                   
 
                     
                     return RedirectToAction("Index", "Home");
                 }
+                ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
                 AddErrors(result);
             }
 

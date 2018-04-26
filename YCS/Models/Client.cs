@@ -9,7 +9,7 @@ namespace YCS.Models
     public class Client
     {
         [Key]
-        [Required]
+       
         public int ClientId { get; set; }
 
         [Required]

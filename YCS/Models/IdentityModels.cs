@@ -17,11 +17,24 @@ namespace YCS.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public string Name { get; set; }
+        
+        public string Surname { get; set; }
+        
+        public string Gender { get; set; }
+        
+        public long ContactNumber { get; set; }
+
+        public string Address { get; set; }
+        
+        public string UserRoles { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Employee> Employees { get; set; }
+       // public DbSet<Employee> Employees { get; set; }
         public DbSet<Orders> Order { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Salary> Salaries  { get; set; }
@@ -38,5 +51,7 @@ namespace YCS.Models
         {
             return new ApplicationDbContext();
         }
+
+       // public System.Data.Entity.DbSet<YCS.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

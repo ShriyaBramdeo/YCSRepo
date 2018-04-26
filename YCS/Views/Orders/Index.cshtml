@@ -1,10 +1,10 @@
-﻿@model IEnumerable<YCS.Models.Client>
+﻿@model IEnumerable<YCS.Models.Orders>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Clients</h2>
+<h2>Orders</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -25,6 +25,12 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ClientAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quotation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
         </th>
         <th></th>
     </tr>
@@ -47,23 +53,30 @@
             @Html.DisplayFor(modelItem => item.ClientAddress)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Quotation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
             @if (User.IsInRole("Admin"))
             {
-                @Html.ActionLink("Edit", "Edit", new {id = item.ClientId})
-                @Html.ActionLink("Details", "Details", new {id = item.ClientId}) 
-                @Html.ActionLink("Delete", "Delete", new {id = item.ClientId})
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderId })
+                
+                @Html.ActionLink("Details", "Details", new { id = item.OrderId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
             }
             @if (User.IsInRole("Manager"))
             {
 
-                @Html.ActionLink("Edit", "Edit", new { id = item.ClientId })
-                @Html.ActionLink("Details", "Details", new { id = item.ClientId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderId })
+                @Html.ActionLink("Details", "Details", new { id = item.OrderId })
             }
             @if (User.IsInRole("Employee"))
             {
 
-                @Html.ActionLink("Edit", "Edit", new { id = item.ClientId })
-                @Html.ActionLink("Details", "Details", new { id = item.ClientId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderId })
+                @Html.ActionLink("Details", "Details", new { id = item.OrderId })
             }
         </td>
     </tr>

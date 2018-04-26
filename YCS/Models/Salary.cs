@@ -9,10 +9,10 @@ namespace YCS.Models
     public class Salary
     {
         [Key]
-        [Required]
         public string Id { get; set; }
 
-        public virtual Employee Employee { get; set; }
+       
+
         public string StaffName { get; set; }
 
        [Required]

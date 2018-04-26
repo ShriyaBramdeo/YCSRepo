@@ -9,7 +9,6 @@ namespace YCS.Models
     public class Product
     {
         [Key]
-        [Required]
         public int ProductId { get; set; }
 
         [Required]

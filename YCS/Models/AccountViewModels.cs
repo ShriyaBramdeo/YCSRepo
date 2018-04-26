@@ -71,15 +71,35 @@ namespace YCS.Models
         [Display(Name = "UserRoles")]
         public string UserRoles { get; set; }
 
-        
+        [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Surname")]
+        public string Surname { get; set; }
+
+        [Required]
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
+
+        [Required]
+        [Display(Name = "Contact Number")]
+        public long ContactNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
-        [Display(Name = "UserName")]
-        public string UserName { get; set; }
+        //[Required]
+        //[Display(Name = "UserName")]
+        //public string UserName { get; set; }
 
 
         [Required]

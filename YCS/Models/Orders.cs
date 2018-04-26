@@ -9,7 +9,7 @@ namespace YCS.Models
     public class Orders
     {
         [Key]
-        [Required]
+       
         public int OrderId { get; set; }
 
         public virtual Client Client { get; set; }
@@ -36,6 +36,7 @@ namespace YCS.Models
         [Required]
         [Display(Name = "Quotation")]
         public double Quotation { get; set; }
+
 
         [Required]
         [Display(Name = "Total")]

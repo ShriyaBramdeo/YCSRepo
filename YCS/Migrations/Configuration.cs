@@ -9,7 +9,7 @@ namespace YCS.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(YCS.Models.ApplicationDbContext context)
